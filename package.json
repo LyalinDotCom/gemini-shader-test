@@ -1,0 +1,13 @@
+{
+  "name": "gemini-shader-test",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "20-second Gemini API cinema video reconstructed as one zero-texture WebGL2 GLSL fragment shader using shader-skills.",
+  "scripts": {
+    "dev": "node server.mjs",
+    "start": "node server.mjs",
+    "bundle:shader": "python3 ./shader-skills/skills/shader-art-coding/scripts/glsl_tools.py bundle ./shaders/gemini_video2glsl.src.glsl -o ./public/gemini_video2glsl.glsl",
+    "check:shader": "PATH=/opt/homebrew/bin:$PATH python3 ./shader-skills/skills/shader-art-coding/scripts/glsl_tools.py check ./public/gemini_video2glsl.glsl",
+    "eval:gpu": "node ./tools/gpu_eval.mjs"
+  }
+}

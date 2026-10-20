@@ -1,0 +1,11 @@
+.env
+.research/
+tmp/
+*.mp4
+*.mp3
+*.wav
+*.webm
+build/
+evals/results/
+.claude/launch.json
+__pycache__/

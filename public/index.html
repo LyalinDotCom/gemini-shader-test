@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GEMINI // Video 2 GLSL — 20s Gemini Film Rebuilt in Pure GLSL Math</title>
+  <meta
+    name="description"
+    content="Side-by-side real-time comparison of a 20-second multi-act video generated via gemini-api and a single self-contained WebGL2 GLSL fragment shader with zero textures and zero video frames."
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <nav class="topbar" aria-label="Primary Navigation">
+    <div class="shell topbar-inner">
+      <div class="brand-mark">
+        <span class="brand-code">GEMINI // VIDEO 2 GLSL</span>
+        <span class="brand-sub">GEMINI-API CINEMA &times; SHADER-SKILLS PROCEDURAL ENGINE</span>
+      </div>
+      <div class="nav-links">
+        <a href="#stage-anchor" id="nav-stage-link">Live Comparison</a>
+        <a href="#proof-anchor" id="nav-proof-link">GPU X-Ray Passes</a>
+        <a href="#clips-anchor" id="nav-clips-link">Gemini Source Reels</a>
+        <a href="#code-anchor" id="nav-code-link">GLSL Source</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="shell">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">FOUR ENVIRONMENTS &middot; ZERO TEXTURES &middot; EXACT 20.000s HARMONIC LOOP</p>
+        <h1>One 20-Second Gemini Film. Rebuilt as Pure GLSL Mathematics.</h1>
+        <p class="hero-lead">
+          Left: a real 20.000-second HD film generated with <code>gemini-api video</code> across four worlds.
+          Right: a single Shadertoy-compatible GLSL fragment shader compiled live on your GPU using
+          <code>shader-skills</code>&mdash;no textures, no meshes, no video frames. Drag directly on the shader
+          canvas at any moment to orbit the camera in true 3D space.
+        </p>
+      </div>
+
+      <div class="spec-ledger" aria-label="Technical Specifications">
+        <div class="spec-item">
+          <span class="spec-label">Shader Footprint</span>
+          <span class="spec-value" id="stat-shader-size">94.8 KB</span>
+          <span class="spec-note" id="stat-shader-lines">2,310 lines &middot; 0 glslang errors</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Textures / Video Frames</span>
+          <span class="spec-value" id="stat-zero-tex">0 / 0</span>
+          <span class="spec-note">100% SDF + Volumetric Math</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Loop Seam Delta</span>
+          <span class="spec-value" id="stat-seam-diff">0 / 255</span>
+          <span class="spec-note">Bit-exact <code>mod(iTime, 20.0)</code></span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Live WebGL2 GPU</span>
+          <span class="spec-value" id="stat-gpu-fps">-- FPS</span>
+          <span class="spec-note" id="stat-gpu-renderer">Initializing Metal GPU...</span>
+        </div>
+      </div>
+    </header>
+
+    <section class="stage-section" id="stage-anchor" aria-label="Synchronized Video and GLSL Stage">
+      <div class="stage-toolbar">
+        <div class="segmented" id="view-mode-group" role="group" aria-label="Viewport Layout Mode">
+          <button type="button" id="mode-side-btn" class="is-active" data-mode="side">
+            Side-by-Side Sync
+          </button>
+          <button type="button" id="mode-wipe-btn" data-mode="wipe">
+            Split-Curtain Wipe
+          </button>
+          <button type="button" id="mode-solo-btn" data-mode="solo">
+            Full Cinema GLSL
+          </button>
+        </div>
+
+        <div class="live-readout">
+          <span id="active-act-readout">ACT I &middot; EMERALD LAGOON</span>
+          <span class="status-indicator" id="compile-status-text">SHADER VERIFIED</span>
+        </div>
+
+        <div class="segmented" id="quality-group" role="group" aria-label="Shader Quality Tier">
+          <button type="button" id="qual-1-btn" data-quality="1">Q1 Fast</button>
+          <button type="button" id="qual-2-btn" class="is-active" data-quality="2">Q2 Realtime</button>
+          <button type="button" id="qual-3-btn" data-quality="3">Q3 4&times; AA</button>
+        </div>
+      </div>
+
+      <div class="viewport-frame">
+        <div class="viewport-grid" id="viewport-grid" style="--wipe-pct: 50%;">
+          <div class="viewport-pane" id="pane-video">
+            <span class="pane-badge">SOURCE REFERENCE &middot; GEMINI-API MP4 (17.3 MB)</span>
+            <video
+              id="source-video"
+              src="/gemini-source-20s.mp4"
+              muted
+              playsinline
+              loop
+              preload="auto"
+            ></video>
+          </div>
+
+          <div class="viewport-pane" id="pane-shader">
+            <span class="pane-badge is-right" id="shader-pass-badge">
+              LIVE GPU FRAGMENT SHADER &middot; 0 TEXTURES
+            </span>
+            <canvas id="glsl-canvas" width="1280" height="720"></canvas>
+            <span class="pane-hint" id="orbit-hint">Drag to orbit 3D camera &middot; Double-click to reset</span>
+            <div class="compile-overlay" id="compile-overlay">
+              <span>Compiling WebGL2 GLSL ES 3.00 Program...</span>
+            </div>
+          </div>
+
+          <div class="wipe-divider" id="wipe-divider" role="separator" aria-label="Split Wipe Handle">
+            <div class="wipe-knob">&harr;</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="transport-deck">
+        <div class="timeline-row">
+          <div class="scrubber-wrap">
+            <input
+              type="range"
+              id="timeline-slider"
+              min="0"
+              max="20"
+              step="0.01"
+              value="0"
+              aria-label="20-second timeline scrubber"
+            />
+          </div>
+
+          <div class="act-markers">
+            <button type="button" class="act-btn is-current" id="act-1-btn" data-seek="0.0">
+              <span class="act-btn-time">00.00s &ndash; 05.00s &middot; ACT I</span>
+              <span class="act-btn-title">Emerald Caustic Lagoon &amp; Obsidian Ring</span>
+            </button>
+            <button type="button" class="act-btn" id="act-2-btn" data-seek="5.5">
+              <span class="act-btn-time">05.00s &ndash; 10.00s &middot; ACT II</span>
+              <span class="act-btn-title">Sunlit Alpine Canyon &amp; Cyan Obelisk</span>
+            </button>
+            <button type="button" class="act-btn" id="act-3-btn" data-seek="10.5">
+              <span class="act-btn-time">10.00s &ndash; 15.00s &middot; ACT III</span>
+              <span class="act-btn-title">Blue-Hour Skyline Orbit &amp; Art-Deco Spire</span>
+            </button>
+            <button type="button" class="act-btn" id="act-4-btn" data-seek="15.5">
+              <span class="act-btn-time">15.00s &ndash; 20.00s &middot; ACT IV</span>
+              <span class="act-btn-title">Basalt Colonnade &amp; Total Solar Eclipse</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="controls-bar">
+          <div class="controls-left">
+            <button type="button" class="btn btn-primary" id="play-toggle-btn">Pause</button>
+            <button type="button" class="btn" id="restart-btn">00.00s</button>
+            <button type="button" class="btn" id="loop-wrap-btn">Test 19.0s &rarr; 00.0s Loop</button>
+            <span class="timecode" id="timecode-display">00.00s / 20.00s</span>
+          </div>
+
+          <div class="controls-right">
+            <button type="button" class="btn" id="sync-mode-btn">Clock: Video-Synced</button>
+            <button type="button" class="btn" id="reset-orbit-btn">Reset 3D Camera</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="proof-strip" id="proof-anchor">
+        <div class="proof-title-group">
+          <span class="proof-heading">LIVE PROCEDURAL X-RAY PASSES (ZERO VIDEO FRAMES PROOF)</span>
+          <span class="proof-desc">
+            Switch compiler <code>#define DEBUG_MODE</code> live on GPU to inspect underlying 3D distance fields, world normals, material IDs, and raymarch heatmaps.
+          </span>
+        </div>
+
+        <div class="segmented" id="debug-mode-group" role="group" aria-label="GLSL Debug Mode Selector">
+          <button type="button" id="dbg-0-btn" class="is-active" data-debug="0">0 &middot; Beauty</button>
+          <button type="button" id="dbg-1-btn" data-debug="1">1 &middot; SDF Field</button>
+          <button type="button" id="dbg-2-btn" data-debug="2">2 &middot; 3D Normals</button>
+          <button type="button" id="dbg-3-btn" data-debug="3">3 &middot; Material IDs</button>
+          <button type="button" id="dbg-4-btn" data-debug="4">4 &middot; Step Heat</button>
+          <button type="button" id="dbg-5-btn" data-debug="5">5 &middot; Masks</button>
+          <button type="button" id="dbg-6-btn" data-debug="6">6 &middot; Direct Light</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-block" id="clips-anchor" aria-labelledby="clips-heading">
+      <div class="section-header">
+        <div>
+          <h2 id="clips-heading">Original <code>gemini-api video</code> Generated Source Clips</h2>
+          <p class="section-sub">
+            Raw 1280&times;720 MP4 clips synthesized with the local <code>gemini-api</code> tool and composed into the 20.000-second seamless reference master. Click any reel to preview or jump the main stage to that act.
+          </p>
+        </div>
+      </div>
+
+      <div class="clips-strip">
+        <article class="clip-item" id="raw-card-1">
+          <video src="/raw_clips/act1_coast.mp4" muted loop playsinline preload="metadata" id="raw-vid-1"></video>
+          <div class="clip-meta">
+            <span class="clip-name">Act I &middot; Coastal Obsidian Lagoon</span>
+            <span class="clip-spec">5.36 MB &middot; 720p24</span>
+          </div>
+        </article>
+
+        <article class="clip-item" id="raw-card-2">
+          <video src="/raw_clips/act2_alpine.mp4" muted loop playsinline preload="metadata" id="raw-vid-2"></video>
+          <div class="clip-meta">
+            <span class="clip-name">Act II &middot; Alpine Crystal Canyon</span>
+            <span class="clip-spec">3.56 MB &middot; 720p24</span>
+          </div>
+        </article>
+
+        <article class="clip-item" id="raw-card-3">
+          <video src="/raw_clips/act3_city.mp4" muted loop playsinline preload="metadata" id="raw-vid-3"></video>
+          <div class="clip-meta">
+            <span class="clip-name">Act III &middot; Twilight Skyline Orbit</span>
+            <span class="clip-spec">7.15 MB &middot; 720p24</span>
+          </div>
+        </article>
+
+        <article class="clip-item" id="raw-card-4">
+          <video src="/raw_clips/act4_eclipse.mp4" muted loop playsinline preload="metadata" id="raw-vid-4"></video>
+          <div class="clip-meta">
+            <span class="clip-name">Act IV &middot; Basalt Solar Eclipse</span>
+            <span class="clip-spec">3.95 MB &middot; 720p24</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-block" id="code-anchor" aria-labelledby="code-heading">
+      <div class="section-header">
+        <div>
+          <h2 id="code-heading">Self-Contained GLSL Fragment Shader Source</h2>
+          <p class="section-sub">
+            Paste-ready for Shadertoy (<code>void mainImage(out vec4 fragColor, in vec2 fragCoord)</code>) with zero external channels, textures, or buffers. Built and lint-verified with <code>shader-skills/glsl_tools.py</code> + <code>glslangValidator</code>.
+          </p>
+        </div>
+      </div>
+
+      <div class="code-shell">
+        <div class="code-toolbar">
+          <div class="segmented" id="code-file-group">
+            <button type="button" id="show-bundled-btn" class="is-active" data-file="bundled">
+              Bundled Shadertoy GLSL (Standalone)
+            </button>
+            <button type="button" id="show-author-btn" data-file="author">
+              Scene Architecture Source (.src.glsl)
+            </button>
+          </div>
+
+          <div class="controls-right">
+            <button type="button" class="btn" id="jump-act1-code-btn" data-find="ACT I —">Act I</button>
+            <button type="button" class="btn" id="jump-act2-code-btn" data-find="ACT II —">Act II</button>
+            <button type="button" class="btn" id="jump-act3-code-btn" data-find="ACT III —">Act III</button>
+            <button type="button" class="btn" id="jump-act4-code-btn" data-find="ACT IV —">Act IV</button>
+            <button type="button" class="btn btn-primary" id="copy-glsl-btn">Copy Shadertoy GLSL</button>
+            <a class="btn" id="download-glsl-btn" href="/gemini_video2glsl.glsl" download="gemini_video2glsl.glsl" style="text-decoration:none;">
+              Download .glsl
+            </a>
+          </div>
+        </div>
+        <pre class="code-scroll" id="glsl-code-view">Loading GLSL shader source...</pre>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span>GEMINI // VIDEO 2 GLSL BENCHMARK STUDIO</span>
+      <span>GENERATED WITH GEMINI-API &amp; BUILT WITH GOKAYFEM/SHADER-SKILLS</span>
+    </footer>
+  </main>
+
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

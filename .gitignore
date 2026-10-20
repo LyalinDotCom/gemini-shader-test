@@ -1,0 +1,8 @@
+.DS_Store
+node_modules/
+tools/video_pipeline
+raw_clips/frames_20s/
+raw_clips/shader_renders/
+raw_clips/site_screenshots/
+raw_clips/comparison_v*.jpg
+shaders/*.inc.glsl

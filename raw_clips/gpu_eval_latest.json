@@ -1,0 +1,12 @@
+{
+  "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M3 Pro, Unspecified Version)",
+  "compileMs_Q3": 290.4,
+  "bench_Q2": {
+    "avgDrawMs": 0.01,
+    "estFps": 10000
+  },
+  "loopCheck": {
+    "maxChannelDiff_t0_vs_t20": 0
+  },
+  "framesRendered": 12
+}
