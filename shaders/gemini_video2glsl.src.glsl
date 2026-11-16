@@ -662,7 +662,7 @@ float act2MistDensity(vec3 p, float u2, bool cheapShadow) {
     float topY = 2.85 + foreLift + 0.52 * sin(p.x * 0.30 + 0.5) + 0.38 * cos(p.z * 0.22);
     float hNorm = (p.y - (-0.85)) / (topY - (-0.85));
     if (hNorm <= 0.0 || hNorm >= 1.0) return 0.0;
-    float prof = smoothstep(0.0, 0.14, hNorm) * (1.0 - smoothstep(0.22, 1.0, hNorm));
+    float prof = smoothstep(0.0, 0.18, hNorm) * (1.0 - smoothstep(0.18, 1.0, hNorm));
 
     // Gentle window opening over lower-right glacial stream as camera glides forward (t = 7..9.5s)
     float streamWindow = smoothstep(1.0, 3.6, u2) * exp(-dot2((p.xz - vec2(1.8, 3.0)) * vec2(0.28, 0.15))) * 0.72;
@@ -676,8 +676,8 @@ float act2MistDensity(vec3 p, float u2, bool cheapShadow) {
         float b2 = billowFbm(q.xz * 1.85 + vec2(2.1, -1.4) + 0.38 * q.y, 2);
         billow = 0.42 * n3 + 0.58 * b2;
     }
-    float raw = billow * prof * (1.0 - streamWindow) - 0.17;
-    return saturate(raw * 3.4) * 1.50;
+    float raw = billow * prof * (1.0 - streamWindow) - 0.15;
+    return saturate(raw * 2.8) * 1.48;
 }
 
 vec3 renderAct2(vec2 coord, float u2, out vec3 dbgOut) {
@@ -843,9 +843,9 @@ vec3 renderAct2(vec2 coord, float u2, out vec3 dbgOut) {
     vec3 volRad = vec3(0.0);
     vec3 volTrans = vec3(1.0);
     if (tSlabHi > tSlabLo) {
-        const int MSTEPS = QUALITY >= 3 ? 22 : (QUALITY == 2 ? 15 : 10);
+        const int MSTEPS = QUALITY >= 3 ? 28 : (QUALITY == 2 ? 24 : 14);
         float dt = (tSlabHi - tSlabLo) / float(MSTEPS);
-        float mt = tSlabLo + dt * interleavedGradientNoise(floor(coord));
+        float mt = tSlabLo + dt * (0.20 + 0.60 * interleavedGradientNoise(floor(coord)));
         for (int i = 0; i < MSTEPS; i++) {
             vec3 mp = ro + rd * mt;
             float sig = act2MistDensity(mp, u2, false);
@@ -1537,9 +1537,8 @@ vec3 renderAct4(vec2 coord, float u4, out vec3 dbgOut) {
 // MASTER 20.000-SECOND TIMELINE COMPOSITOR & FILMIC ACES COLOR PIPELINE
 // =================================================================================================
 
-vec3 finishDisplay(vec3 hdrLinear, vec2 uv, float exposure) {
-    vec3 mapped = tonemapACES(max(hdrLinear, vec3(0.0)) * exposure * vignette(uv, 2.45));
-    return linearToSrgb(mapped);
+vec3 tonemapSample(vec3 hdrLinear, vec2 uv, float exposure) {
+    return tonemapACES(max(hdrLinear, vec3(0.0)) * exposure * vignette(uv, 2.45));
 }
 
 // Single call-site per act eliminates 3x monolithic shader inlining bloat
@@ -1583,7 +1582,7 @@ vec3 renderTimelineSample(vec2 coord) {
         #if DEBUG_MODE != 0
             vec3 res = dbg;
         #else
-            vec3 res = finishDisplay(hdr, uv, expVal);
+            vec3 res = tonemapSample(hdr, uv, expVal);
         #endif
         outCol = pass == 0 ? res : mix(outCol, res, w);
     }
@@ -1598,6 +1597,7 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
         col += renderTimelineSample(fragCoord + offset) / float(AA);
     }
     #if DEBUG_MODE == 0
+        col = linearToSrgb(saturate(col));
         col += ditherTPDF(fragCoord, iFrame);
     #endif
     fragColor = vec4(saturate(col), 1.0);

@@ -113,7 +113,8 @@ try {
     if (ready) break;
     await new Promise((r) => setTimeout(r, 150));
   }
-  await new Promise((r) => setTimeout(r, 600));
+  // Let steady-state 60Hz playback settle cleanly past initial boot/MP4 buffer before capturing
+  await new Promise((r) => setTimeout(r, 1500));
 
   async function capturePng(filename) {
     const shot = await cdp("Page.captureScreenshot", { format: "png" });

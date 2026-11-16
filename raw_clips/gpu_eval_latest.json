@@ -1,93 +1,93 @@
 {
   "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M3 Pro, Unspecified Version)",
   "resolution": "1280x720",
-  "compileMs_Q1": 26.5,
-  "compileMs_Q2": 26.9,
-  "compileMs_Q3": 53.7,
+  "compileMs_Q1": 269.3,
+  "compileMs_Q2": 27.2,
+  "compileMs_Q3": 310,
   "bench_Q1": {
-    "compileMs": 26.5,
-    "avgDrawMs": 13.11,
-    "p50DrawMs": 13,
-    "p95DrawMs": 17.9,
-    "estFps": 76.9,
+    "compileMs": 269.3,
+    "avgDrawMs": 13.88,
+    "p50DrawMs": 13.2,
+    "p95DrawMs": 20.9,
+    "estFps": 75.8,
     "perAct": {
       "act1": {
-        "p50DrawMs": 11.7,
-        "p95DrawMs": 14.3,
-        "estFps": 85.5
+        "p50DrawMs": 11.9,
+        "p95DrawMs": 12.3,
+        "estFps": 84
       },
       "act2": {
-        "p50DrawMs": 17.1,
-        "p95DrawMs": 18.5,
-        "estFps": 58.5
+        "p50DrawMs": 19.5,
+        "p95DrawMs": 22.4,
+        "estFps": 51.3
       },
       "act3": {
-        "p50DrawMs": 13.1,
-        "p95DrawMs": 14.2,
-        "estFps": 76.3
+        "p50DrawMs": 14.4,
+        "p95DrawMs": 15.3,
+        "estFps": 69.4
       },
       "act4": {
-        "p50DrawMs": 9.5,
-        "p95DrawMs": 10.9,
-        "estFps": 105.3
+        "p50DrawMs": 9.9,
+        "p95DrawMs": 10.2,
+        "estFps": 101
       }
     }
   },
   "bench_Q2": {
-    "compileMs": 26.9,
-    "avgDrawMs": 15.93,
-    "p50DrawMs": 14.3,
-    "p95DrawMs": 26.5,
-    "estFps": 69.9,
+    "compileMs": 27.2,
+    "avgDrawMs": 16.29,
+    "p50DrawMs": 14.6,
+    "p95DrawMs": 25.8,
+    "estFps": 68.5,
     "perAct": {
       "act1": {
-        "p50DrawMs": 14.6,
-        "p95DrawMs": 15.8,
-        "estFps": 68.5
+        "p50DrawMs": 14.7,
+        "p95DrawMs": 15.6,
+        "estFps": 68
       },
       "act2": {
-        "p50DrawMs": 24,
-        "p95DrawMs": 26.5,
-        "estFps": 41.7
+        "p50DrawMs": 25,
+        "p95DrawMs": 26,
+        "estFps": 40
       },
       "act3": {
-        "p50DrawMs": 13.5,
-        "p95DrawMs": 13.7,
-        "estFps": 74.1
+        "p50DrawMs": 13.6,
+        "p95DrawMs": 15.7,
+        "estFps": 73.5
       },
       "act4": {
         "p50DrawMs": 10.6,
-        "p95DrawMs": 13.7,
+        "p95DrawMs": 12.5,
         "estFps": 94.3
       }
     }
   },
   "bench_Q3": {
-    "compileMs": 53.7,
-    "avgDrawMs": 78.52,
-    "p50DrawMs": 62.4,
-    "p95DrawMs": 157.3,
-    "estFps": 16,
+    "compileMs": 310,
+    "avgDrawMs": 80.92,
+    "p50DrawMs": 66.5,
+    "p95DrawMs": 144,
+    "estFps": 15,
     "perAct": {
       "act1": {
-        "p50DrawMs": 67.8,
-        "p95DrawMs": 78.4,
-        "estFps": 14.7
+        "p50DrawMs": 72.2,
+        "p95DrawMs": 86.1,
+        "estFps": 13.9
       },
       "act2": {
-        "p50DrawMs": 143.8,
-        "p95DrawMs": 160.1,
-        "estFps": 7
+        "p50DrawMs": 138,
+        "p95DrawMs": 149.5,
+        "estFps": 7.2
       },
       "act3": {
-        "p50DrawMs": 58.6,
-        "p95DrawMs": 66.4,
-        "estFps": 17.1
+        "p50DrawMs": 52.8,
+        "p95DrawMs": 66.5,
+        "estFps": 18.9
       },
       "act4": {
-        "p50DrawMs": 44.2,
-        "p95DrawMs": 58.9,
-        "estFps": 22.6
+        "p50DrawMs": 60.6,
+        "p95DrawMs": 72,
+        "estFps": 16.5
       }
     }
   },
@@ -102,11 +102,11 @@
     },
     "t19_999_vs_t0": {
       "maxChannelDiff": 227,
-      "meanAbsDiff": 0.709
+      "meanAbsDiff": 0.714
     },
     "t19_967_vs_t0": {
       "maxChannelDiff": 230,
-      "meanAbsDiff": 10.352
+      "meanAbsDiff": 9.271
     }
   },
   "framesRendered": 12
