@@ -1,12 +1,113 @@
 {
   "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M3 Pro, Unspecified Version)",
-  "compileMs_Q3": 290.4,
+  "resolution": "1280x720",
+  "compileMs_Q1": 26.5,
+  "compileMs_Q2": 26.9,
+  "compileMs_Q3": 53.7,
+  "bench_Q1": {
+    "compileMs": 26.5,
+    "avgDrawMs": 13.11,
+    "p50DrawMs": 13,
+    "p95DrawMs": 17.9,
+    "estFps": 76.9,
+    "perAct": {
+      "act1": {
+        "p50DrawMs": 11.7,
+        "p95DrawMs": 14.3,
+        "estFps": 85.5
+      },
+      "act2": {
+        "p50DrawMs": 17.1,
+        "p95DrawMs": 18.5,
+        "estFps": 58.5
+      },
+      "act3": {
+        "p50DrawMs": 13.1,
+        "p95DrawMs": 14.2,
+        "estFps": 76.3
+      },
+      "act4": {
+        "p50DrawMs": 9.5,
+        "p95DrawMs": 10.9,
+        "estFps": 105.3
+      }
+    }
+  },
   "bench_Q2": {
-    "avgDrawMs": 0.01,
-    "estFps": 10000
+    "compileMs": 26.9,
+    "avgDrawMs": 15.93,
+    "p50DrawMs": 14.3,
+    "p95DrawMs": 26.5,
+    "estFps": 69.9,
+    "perAct": {
+      "act1": {
+        "p50DrawMs": 14.6,
+        "p95DrawMs": 15.8,
+        "estFps": 68.5
+      },
+      "act2": {
+        "p50DrawMs": 24,
+        "p95DrawMs": 26.5,
+        "estFps": 41.7
+      },
+      "act3": {
+        "p50DrawMs": 13.5,
+        "p95DrawMs": 13.7,
+        "estFps": 74.1
+      },
+      "act4": {
+        "p50DrawMs": 10.6,
+        "p95DrawMs": 13.7,
+        "estFps": 94.3
+      }
+    }
+  },
+  "bench_Q3": {
+    "compileMs": 53.7,
+    "avgDrawMs": 78.52,
+    "p50DrawMs": 62.4,
+    "p95DrawMs": 157.3,
+    "estFps": 16,
+    "perAct": {
+      "act1": {
+        "p50DrawMs": 67.8,
+        "p95DrawMs": 78.4,
+        "estFps": 14.7
+      },
+      "act2": {
+        "p50DrawMs": 143.8,
+        "p95DrawMs": 160.1,
+        "estFps": 7
+      },
+      "act3": {
+        "p50DrawMs": 58.6,
+        "p95DrawMs": 66.4,
+        "estFps": 17.1
+      },
+      "act4": {
+        "p50DrawMs": 44.2,
+        "p95DrawMs": 58.9,
+        "estFps": 22.6
+      }
+    }
   },
   "loopCheck": {
-    "maxChannelDiff_t0_vs_t20": 0
+    "t0_vs_t20_sameFrame": {
+      "maxChannelDiff": 0,
+      "meanAbsDiff": 0
+    },
+    "t0_vs_t20_advancingFrame": {
+      "maxChannelDiff": 2,
+      "meanAbsDiff": 0.464
+    },
+    "t19_999_vs_t0": {
+      "maxChannelDiff": 227,
+      "meanAbsDiff": 0.709
+    },
+    "t19_967_vs_t0": {
+      "maxChannelDiff": 230,
+      "meanAbsDiff": 10.352
+    }
   },
   "framesRendered": 12
 }

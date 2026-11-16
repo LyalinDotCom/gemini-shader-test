@@ -48,23 +48,23 @@
       <div class="spec-ledger" aria-label="Technical Specifications">
         <div class="spec-item">
           <span class="spec-label">Shader Footprint</span>
-          <span class="spec-value" id="stat-shader-size">94.8 KB</span>
-          <span class="spec-note" id="stat-shader-lines">2,310 lines &middot; 0 glslang errors</span>
+          <span class="spec-value" id="stat-shader-size">-- KB</span>
+          <span class="spec-note" id="stat-shader-lines">Loading shader telemetry...</span>
         </div>
         <div class="spec-item">
-          <span class="spec-label">Textures / Video Frames</span>
-          <span class="spec-value" id="stat-zero-tex">0 / 0</span>
-          <span class="spec-note">100% SDF + Volumetric Math</span>
+          <span class="spec-label">Textures / Frames / Bitmaps</span>
+          <span class="spec-value" id="stat-zero-tex">0 / 0 / 0</span>
+          <span class="spec-note">100% Pure Procedural Math</span>
         </div>
         <div class="spec-item">
           <span class="spec-label">Loop Seam Delta</span>
           <span class="spec-value" id="stat-seam-diff">0 / 255</span>
-          <span class="spec-note">Bit-exact <code>mod(iTime, 20.0)</code></span>
+          <span class="spec-note" id="stat-seam-note">Periodic 20.000s harmonic loop</span>
         </div>
         <div class="spec-item">
           <span class="spec-label">Live WebGL2 GPU</span>
           <span class="spec-value" id="stat-gpu-fps">-- FPS</span>
-          <span class="spec-note" id="stat-gpu-renderer">Initializing Metal GPU...</span>
+          <span class="spec-note" id="stat-gpu-renderer">Initializing WebGL2 GPU...</span>
         </div>
       </div>
     </header>
@@ -98,7 +98,7 @@
       <div class="viewport-frame">
         <div class="viewport-grid" id="viewport-grid" style="--wipe-pct: 50%;">
           <div class="viewport-pane" id="pane-video">
-            <span class="pane-badge">SOURCE REFERENCE &middot; GEMINI-API MP4 (17.3 MB)</span>
+            <span class="pane-badge" id="video-pane-badge">SOURCE REFERENCE &middot; GEMINI-API MP4</span>
             <video
               id="source-video"
               src="/gemini-source-20s.mp4"
@@ -206,7 +206,7 @@
       </div>
 
       <div class="clips-strip">
-        <article class="clip-item" id="raw-card-1">
+        <article class="clip-item" id="raw-card-1" tabindex="0" role="button" aria-label="Jump to Act I: Coastal Obsidian Lagoon">
           <video src="/raw_clips/act1_coast.mp4" muted loop playsinline preload="metadata" id="raw-vid-1"></video>
           <div class="clip-meta">
             <span class="clip-name">Act I &middot; Coastal Obsidian Lagoon</span>
@@ -214,7 +214,7 @@
           </div>
         </article>
 
-        <article class="clip-item" id="raw-card-2">
+        <article class="clip-item" id="raw-card-2" tabindex="0" role="button" aria-label="Jump to Act II: Alpine Crystal Canyon">
           <video src="/raw_clips/act2_alpine.mp4" muted loop playsinline preload="metadata" id="raw-vid-2"></video>
           <div class="clip-meta">
             <span class="clip-name">Act II &middot; Alpine Crystal Canyon</span>
@@ -222,7 +222,7 @@
           </div>
         </article>
 
-        <article class="clip-item" id="raw-card-3">
+        <article class="clip-item" id="raw-card-3" tabindex="0" role="button" aria-label="Jump to Act III: Twilight Skyline Orbit">
           <video src="/raw_clips/act3_city.mp4" muted loop playsinline preload="metadata" id="raw-vid-3"></video>
           <div class="clip-meta">
             <span class="clip-name">Act III &middot; Twilight Skyline Orbit</span>
@@ -230,7 +230,7 @@
           </div>
         </article>
 
-        <article class="clip-item" id="raw-card-4">
+        <article class="clip-item" id="raw-card-4" tabindex="0" role="button" aria-label="Jump to Act IV: Basalt Solar Eclipse">
           <video src="/raw_clips/act4_eclipse.mp4" muted loop playsinline preload="metadata" id="raw-vid-4"></video>
           <div class="clip-meta">
             <span class="clip-name">Act IV &middot; Basalt Solar Eclipse</span>

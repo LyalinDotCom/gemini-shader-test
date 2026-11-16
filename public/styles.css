@@ -354,8 +354,9 @@ h1 {
 }
 
 .viewport-grid.mode-solo #pane-shader {
-  max-height: 76vh;
   width: 100%;
+  max-width: calc(76vh * 16 / 9);
+  margin: 0 auto;
 }
 
 /* Wipe Handle */
@@ -659,12 +660,20 @@ h1 {
   border: 1px solid var(--line-subtle);
   border-radius: var(--radius-md);
   overflow: hidden;
+  cursor: pointer;
   transition: border-color 150ms ease, transform 150ms ease;
 }
 
 .clip-item:hover {
   border-color: var(--line-strong);
   transform: translateY(-2px);
+}
+
+.clip-item:focus-visible,
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--accent-amber);
+  outline-offset: 2px;
 }
 
 .clip-item video {
